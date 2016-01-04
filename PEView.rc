@@ -1,0 +1,156 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_MAIN DIALOG DISCARDABLE  0, 0, 308, 193
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PETools"
+FONT 12, "仿宋"
+BEGIN
+    GROUPBOX        "",IDC_STATIC_PROC,7,4,220,182
+    GROUPBOX        "",IDC_STATIC_TOOLS,238,4,63,182
+    PUSHBUTTON      "PE查看",IDC_BUTTON_PETOOLS,245,17,48,18
+    PUSHBUTTON      "关于",IDC_BUTTON_ABOUT,245,115,48,18
+    PUSHBUTTON      "退  出",IDC_BUTTON_EXIT,245,159,48,18
+    CONTROL         "List1",IDC_LIST_PROCESS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,13,15,208,82
+    CONTROL         "List1",IDC_LIST_MOUDLE,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,13,100,208,78
+END
+
+IDD_DIALOG_PEVIEW DIALOG DISCARDABLE  0, 0, 305, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "[ PE信息查看 ]"
+FONT 12, "仿宋"
+BEGIN
+    GROUPBOX        "PE头信息",IDC_STATIC,7,7,291,131
+    LTEXT           "入口点：",IDC_STATIC,17,22,33,8
+    LTEXT           "镜像基址：",IDC_STATIC,17,35,41,8
+    LTEXT           "镜像大小：",IDC_STATIC,17,48,41,8
+    LTEXT           "代码基址：",IDC_STATIC,17,61,41,8
+    LTEXT           "数据基址：",IDC_STATIC,17,74,41,8
+    LTEXT           "内存对齐：",IDC_STATIC,17,87,41,8
+    LTEXT           "文件对齐：",IDC_STATIC,17,100,41,8
+    LTEXT           "标志字：",IDC_STATIC,17,113,33,8
+    EDITTEXT        IDC_EDIT_ENTRY_POINT,66,20,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,66,34,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,66,46,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,66,59,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,66,71,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,66,84,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,66,97,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,66,111,56,12,ES_AUTOHSCROLL
+    LTEXT           "子系统：",IDC_STATIC,136,22,33,8
+    LTEXT           "区段数目：",IDC_STATIC,136,35,41,8
+    LTEXT           "时间戳：",IDC_STATIC,136,48,33,8
+    LTEXT           "PE头大小：",IDC_STATIC,136,61,41,8
+    LTEXT           "特征值：",IDC_STATIC,136,74,33,8
+    LTEXT           "校验和：",IDC_STATIC,136,87,33,8
+    LTEXT           "可选PE头：",IDC_STATIC,136,100,41,8
+    LTEXT           "目录项数目：",IDC_STATIC,136,113,49,8
+    EDITTEXT        IDC_EDIT9,185,20,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,185,34,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,185,46,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,185,59,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT13,185,71,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,185,84,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,185,97,56,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT16,185,111,56,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "关闭",IDC_BUTTON_PE_EXIT,248,20,46,17
+    PUSHBUTTON      "区段",IDC_BUTTON_SECTION,248,48,46,17
+    PUSHBUTTON      "目录",IDC_BUTTON3,248,76,46,17
+    GROUPBOX        "",IDC_STATIC,245,7,53,131
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 301
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 186
+    END
+
+    IDD_DIALOG_PEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PETools", "PETools.vcproj", "{E93C58F7-961E-4683-94D7-46EA277B0F91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E93C58F7-961E-4683-94D7-46EA277B0F91}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E93C58F7-961E-4683-94D7-46EA277B0F91}.Debug|Win32.Build.0 = Debug|Win32
+		{E93C58F7-961E-4683-94D7-46EA277B0F91}.Release|Win32.ActiveCfg = Release|Win32
+		{E93C58F7-961E-4683-94D7-46EA277B0F91}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
