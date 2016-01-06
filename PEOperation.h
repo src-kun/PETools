@@ -21,8 +21,11 @@ public:
 	virtual ~PEOperation();
 
 public:					
-	void ShowPEView(HINSTANCE hInstance, HWND hwndDlg, CHAR *path);
-	void ParsingPeInfo(HWND hwndDlg, CHAR* filePath);							//显示PE头信息
+	void ShowPEView(HINSTANCE hInstance, HWND hwndDlg, TCHAR *path);
+	void ParsingPeInfo(CHAR* filePath);							//显示PE头信息
+
+private:
+	void SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable);
 
 };
 

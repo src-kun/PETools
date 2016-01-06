@@ -24,12 +24,14 @@ PETool::~PETool()
 		free(this->imageTable.NewBuffer);
 }		
 
-void PETool::analysis()
+void PETool::analysis(_IMAGE_ADR_TABLE &imageTable)
 {
-	this->imageTable.lpDosHeader = ( _IMAGE_DOS_HEADER *)this->imageTable.FileBuffer;
-	this->imageTable.lpFileHeader = ( _IMAGE_FILE_HEADER *)(this->imageTable.lpDosHeader->e_lfanew + (DWORD)this->imageTable.FileBuffer);
-	//this->
 	//½âÎöPE
+	imageTable.lpDosHeader = ( _IMAGE_DOS_HEADER *)imageTable.FileBuffer;
+	imageTable.Signature = *(DWORD*)((CHAR*)this->imageTable.FileBuffer + imageTable.lpDosHeader->e_lfanew);
+	imageTable.lpFileHeader = (_IMAGE_FILE_HEADER *)((CHAR*)this->imageTable.FileBuffer + imageTable.lpDosHeader->e_lfanew + sizeof(DWORD));
+	memcpy(&imageTable.optionHeader, ((CHAR*)imageTable.lpFileHeader + sizeof(_IMAGE_FILE_HEADER)), imageTable.lpFileHeader->SizeOfOptionalHeader);
+	imageTable.lpSectionHeader = (_IMAGE_SECTION_HEADER *)((CHAR*)this->imageTable.FileBuffer + imageTable.lpDosHeader->e_lfanew + sizeof(DWORD) + sizeof(_IMAGE_FILE_HEADER) + imageTable.lpFileHeader->SizeOfOptionalHeader);
 }
 
 void PETool::rvaToFoa(DWORD &rva, DWORD* foa)

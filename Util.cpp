@@ -38,17 +38,16 @@ void Util::OutputDebugPtf(const char *format,...)
 void Util::OpenFileWindow(LPOPENFILENAME stOpenFile, HWND hwndDlg)
 {
 		TCHAR szPeFileExt[100] = "*.exe;*.dll;*.sys";
-		TCHAR szFileName[1024];
-		memset(szFileName, 0, 256);
+		TCHAR szFileName[1024] = {0};
 		memset(stOpenFile, 0, sizeof(OPENFILENAME));
 		stOpenFile->lStructSize = sizeof(OPENFILENAME);
 		stOpenFile->Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_EXPLORER;
 		stOpenFile->hwndOwner = hwndDlg;
 		stOpenFile->lpstrFilter = szPeFileExt;
-		stOpenFile->lpstrFile = szFileName;
+		stOpenFile->lpstrFile = szFileName;		//ÎÄ¼þÃû
 		stOpenFile->nMaxFile = MAX_PATH;
 		GetOpenFileName(stOpenFile);
-		MessageBox(NULL, stOpenFile->lpstrFile, TEXT("PID"), MB_OK);
+		//MessageBox(NULL, stOpenFile->lpstrFile, TEXT("PID"), MB_OK);
 }
 
 void Util::GetError()
