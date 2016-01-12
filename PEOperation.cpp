@@ -15,6 +15,8 @@ static PEOperation peOperation;
 static Util util;
 static CHAR filePath[2048];
 static HWND PEINFO_HWNDDLG;
+static HINSTANCE hAppInstance;
+
 
 //回调函数 <-> IDD_DIALOG_PEVIEW
 BOOL CALLBACK PEViewProc(
@@ -47,10 +49,17 @@ BOOL CALLBACK PEViewProc(
 				{
 					EndDialog(hwndDlg,0);
 					break;
-				}
-			case IDC_BUTTON_SECTION:
+				} 
+			case IDC_BUTTON_OPEN_SECTION_VIEW:
 				{
-					//打开节表视图
+					PESectionHeader sectionCls;
+					sectionCls.ShowSectionView(hAppInstance, hwndDlg, peTool.imageTable.lpSectionHeader, peTool.imageTable.lpFileHeader->NumberOfSections);
+					break;
+				}
+			case IDC_BUTTON_OPEN_DATADIRECTORY_VIEW:
+				{
+					PEOptionHeader optionHeader;
+					optionHeader.ShowDirtoryView(hAppInstance, hwndDlg, &peTool);
 					break;
 				}
 			}
@@ -71,6 +80,7 @@ PEOperation::~PEOperation()
 
 void PEOperation::ShowPEView(HINSTANCE hInstance, HWND hwndDlg, TCHAR *path)
 {
+	hAppInstance = hInstance;
 	if(!*path) return;
 	memcpy(filePath, path, strlen(path));
 	DialogBox(hInstance, MAKEINTRESOURCE(IDD_DIALOG_PEVIEW), hwndDlg, PEViewProc);
@@ -98,11 +108,11 @@ void PEOperation::ParsingPeInfo(TCHAR* filePath)
 void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 {
 	TCHAR szBuffer[0XF] = {0};
-	TCHAR sectionName[0x9] = {0};
+
 	
 	//入口点
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.AddressOfEntryPoint);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->AddressOfEntryPoint);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_ENTRY_POINT,
 							   WM_SETTEXT,
@@ -111,7 +121,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//镜像地址
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.ImageBase);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->ImageBase);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_IMAGE_BASE,
 							   WM_SETTEXT,
@@ -120,7 +130,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//镜像大小
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.SizeOfImage);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->SizeOfImage);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_IMAGE_SIZE,
 							   WM_SETTEXT,
@@ -129,7 +139,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//代码基址
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.BaseOfCode);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->BaseOfCode);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_CODE_BASE,
 							   WM_SETTEXT,
@@ -139,7 +149,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 	
 	//内存对齐
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.SectionAlignment);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->SectionAlignment);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_MEMERY_ALIGNMENT,
 							   WM_SETTEXT,
@@ -148,7 +158,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//文件对齐
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.FileAlignment);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->FileAlignment);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_FILE_ALIGNMENT,
 							   WM_SETTEXT,
@@ -157,7 +167,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//标志字
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%04x", imageTable.optionHeader.Magic);
+	sprintf(szBuffer, "0x%04x", imageTable.lpOptionHeader->Magic);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_FLAGE,
 							   WM_SETTEXT,
@@ -166,7 +176,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//子系统
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%04x", imageTable.optionHeader.Subsystem);
+	sprintf(szBuffer, "0x%04x", imageTable.lpOptionHeader->Subsystem);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_SUBSYSTEM,
 							   WM_SETTEXT,
@@ -193,7 +203,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//PE头大小
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.SizeOfHeaders);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->SizeOfHeaders);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_SIZE_HEADERS,
 							   WM_SETTEXT,
@@ -210,7 +220,7 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 							   (DWORD)szBuffer);
 	//校验和
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%08x", imageTable.optionHeader.CheckSum);
+	sprintf(szBuffer, "0x%08x", imageTable.lpOptionHeader->CheckSum);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_CHECK_SUM,
 							   WM_SETTEXT,
@@ -228,10 +238,12 @@ void PEOperation::SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable)
 
 	//目录项数目
 	memset(szBuffer, 0, sizeof(szBuffer));
-	sprintf(szBuffer, "0x%04x", imageTable.optionHeader.NumberOfRvaAndSizes);
+	sprintf(szBuffer, "0x%04x", imageTable.lpOptionHeader->NumberOfRvaAndSizes);
+	sprintf(szBuffer, "0x%04x", imageTable.lpOptionHeader->NumberOfRvaAndSizes);
 	SendDlgItemMessage(PEINFO_HWNDDLG,
 							   IDC_EDIT_NUMBER_RVA_SIZE,
 							   WM_SETTEXT,
 							   0,
 							   (DWORD)szBuffer);
 }
+

@@ -16,54 +16,22 @@
 class PETool  
 {	
 public:
-		    typedef struct _IMAGE_OPTIONAL_HEADER {  
-			WORD Magic ;                
-			BYTE MajorLinkerVersion;         
-			DWORD MinorLinkerVersion;         
-			DWORD SizeOfCode;                 
-			DWORD SizeOfInitializedData;      
-			DWORD SizeOfUninitializedData;    
-			DWORD AddressOfEntryPoint;   
-			DWORD BaseOfCode;                 
-			DWORD ImageBase;                  
-			DWORD SectionAlignment;           
-			DWORD FileAlignment;              
-			WORD MajorOperatingSystemVersion;
-			WORD MinorOperatingSystemVersion;
-			WORD MajorImageVersion;          
-			WORD MinorImageVersion;          
-			WORD MajorSubsystemVersion;      
-			WORD MinorSubsystemVersion;      
-			DWORD Win32VersionValue;          
-			DWORD SizeOfImage;                
-			DWORD SizeOfHeaders;              
-			DWORD CheckSum;                   
-			WORD Subsystem;                  
-			WORD DllCharacteristics;         
-			DWORD SizeOfStackReserve;         
-			DWORD SizeOfStackCommit;          
-			DWORD SizeOfHeapReserve;          
-			DWORD SizeOfHeapCommit;           
-			DWORD LoaderFlags;                
-			DWORD NumberOfRvaAndSizes;                 
-			IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];  
-    } ;  
-
 	struct _IMAGE_ADR_TABLE
 	{
 		DWORD  FileSize;
 		DWORD *FileBuffer;							//文件缓冲
 		DWORD *ImageBuffer;							//内存缓冲
-		DWORD *NewBuffer;							//修改后的缓冲
 		_IMAGE_DOS_HEADER *lpDosHeader;				//dos头指针
 		DWORD Signature;
 		IMAGE_FILE_HEADER *lpFileHeader;
-		_IMAGE_OPTIONAL_HEADER64 optionHeader;				
+		_IMAGE_OPTIONAL_HEADER *lpOptionHeader;		//TODO 智能识别文件的位数	
+		_IMAGE_OPTIONAL_HEADER64 *lpOptionHeader64;	//TODO 智能识别文件的位数	
 		PIMAGE_SECTION_HEADER lpSectionHeader;		//节表头指针
 	}IMAGE_ADDRESS_TABLE, *PIMAGE_ADDRESS_TABLE;
 
 public:
-	_IMAGE_ADR_TABLE imageTable;
+	_IMAGE_ADR_TABLE imageTable;					//文件缓冲区与PE结构
+	_IMAGE_ADR_TABLE imageTableCpy;					//缓冲区副本 修改文件时用
 
 
 public:
@@ -73,9 +41,10 @@ public:
 
 public:
 	void initBuffer(DWORD size);
-	void analysis(_IMAGE_ADR_TABLE &imageTable);							//解析PE
-	void PETool::rvaToFoa(DWORD &rva, DWORD *foa);								//rva转换为foa
-	void PETool::foaToRva(DWORD &foa, DWORD *rva);								//foa转换为rva
+	void analysis(_IMAGE_ADR_TABLE &imageTable);								//解析PE
+	void newPEImageTable(_IMAGE_ADR_TABLE &newImageTable);
+	void *PETool::rvaToFoa(DWORD rva);								//rva转换为foa
+	void *PETool::foaToRva(DWORD foa);								//foa转换为rva
 };
 
 

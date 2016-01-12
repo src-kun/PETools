@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="PETools"
 	ProjectGUID="{E93C58F7-961E-4683-94D7-46EA277B0F91}"
+	RootNamespace="PETools"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -447,5 +448,9 @@
 		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="PEView.rc"
+		/>
 	</Globals>
 </VisualStudioProject>

@@ -4,6 +4,10 @@
 //
 #define IDD_DIALOG_MAIN                 101
 #define IDD_DIALOG_PEVIEW               102
+#define IDD_DIALOG_SECTION_VIEW         103
+#define IDD_DIALOG_DIRCTORY_VIEW        106
+#define IDD_DIALOG_IMPORT_VIEW          107
+#define IDD_DIALOG_EXPORT_VIEW          109
 #define IDC_STATIC_TOOLS                1000
 #define IDC_BUTTON_PETOOLS              1002
 #define IDC_LIST_PROCESS                1003
@@ -27,18 +31,27 @@
 #define IDC_EDIT_FLAGE                  1014
 #define IDC_BUTTON_PE_EXIT              1015
 #define IDC_BUTTON1                     1016
-#define IDC_BUTTON2                     1018
+#define IDC_BUTTON_OPEN_SECTION_VIEW    1016
+#define IDC_BUTTON_OPEN_IMPORT_VIEW     1016
+#define IDC_BUTTON_OPEN_EXPORT_VIEW2    1017
+#define IDC_BUTTON_OPEN_EXPORT_VIEW     1017
+#define IDC_BUTTON_OPEN_DATADIRECTORY_VIEW 1018
 #define IDC_BUTTON4                     1019
 #define IDC_EDIT9                       1023
 #define IDC_EDIT_SUBSYSTEM              1023
+#define IDC_TEST                        1023
 #define IDC_EDIT10                      1024
 #define IDC_EDIT_NUMBER_SECTIONS        1024
 #define IDC_EDIT11                      1025
 #define IDC_EDIT_TIME_DATE_STAMP        1025
+#define IDC_EDIT_EXPORT_SIZE            1025
 #define IDC_EDIT12                      1026
 #define IDC_EDIT_SIZE_HEADERS           1026
+#define IDC_EDIT_EXPORT_VIRTUALADDRESS  1026
+#define IDC_EDIT_IMPORT_INFO            1026
 #define IDC_EDIT13                      1027
 #define IDC_EDIT_CHARACTERISTICS        1027
+#define IDC_EDIT_EXPORT_INFO            1027
 #define IDC_EDIT14                      1028
 #define IDC_EDIT_CHECK_SUM              1028
 #define IDC_EDIT15                      1029
@@ -47,15 +60,67 @@
 #define IDC_EDIT_NUMBER_RVA_SIZE        1030
 #define IDC_BUTTON_SECTION              1031
 #define IDC_BUTTON3                     1032
+#define IDC_EDIT17                      1059
+#define IDC_EDIT_IMPORT_SIZE            1059
+#define IDC_EDIT_IMPORT_VIRTUALADDRESS  1060
+#define IDC_EDIT19                      1061
+#define IDC_EDIT_RESOURCE_SIZE          1061
+#define IDC_EDIT_RESOURCE_VIRTUALADDRESS 1062
+#define IDC_EDIT21                      1113
+#define IDC_EDIT_EXCEPTION_SIZE         1113
+#define IDC_EDIT_EXCPTION_VIRTUALADDRESS 1114
+#define IDC_EDIT_EXCEPTION_VIRTUALADDRESS 1114
+#define IDC_EDIT_SECURITY_VIRTUALADDRESS 1123
+#define IDC_EDIT24                      1124
+#define IDC_EDIT_SECURITY_SIZE          1124
+#define IDC_EDIT_BASERELOC_VIRTUALADDRESS 1125
+#define IDC_EDIT26                      1126
+#define IDC_EDIT_BASERELOC_SIZE         1126
+#define IDC_EDIT_DEBUG_VIRTUALADDRESS   1127
+#define IDC_EDIT28                      1128
+#define IDC_EDIT_DEBUG_SIZE             1128
+#define IDC_EDIT_COPYRIGHT_VIRTUALADDRESS 1129
+#define IDC_EDIT30                      1130
+#define IDC_EDIT_COPYRIGHT_SIZE         1130
+#define IDC_EDIT_GLOBALPTR_VIRTUALADDRESS 1131
+#define IDC_EDIT32                      1132
+#define IDC_EDIT_CLOBALPTR_SIZE         1132
+#define IDC_EDIT_TLSTABLE_VIRTUALADDRESS 1133
+#define IDC_EDIT34                      1134
+#define IDC_EDIT_TLSTABLE_SIZE          1134
+#define IDC_EDIT35                      1135
+#define IDC_EDIT_LOADCONFIG_VIRTUALADDRESS 1135
+#define IDC_EDIT36                      1136
+#define IDC_EDIT_LOADCONFIG_SIZE        1136
+#define IDC_EDIT37                      1137
+#define IDC_EDIT_BOUNDIMPORT_VIRTUALADDRESS 1137
+#define IDC_EDIT38                      1138
+#define IDC_EDIT_BOUNDIMPORT_SIZE       1138
+#define IDC_EDIT39                      1139
+#define IDC_EDIT_IAT_VIRTUALADDRESS     1139
+#define IDC_EDIT40                      1140
+#define IDC_EDIT_IAT_SIZE               1140
+#define IDC_EDIT41                      1141
+#define IDC_EDIT_DELAYIMPORT_VIRTUALADDRESS 1141
+#define IDC_EDIT42                      1142
+#define IDC_EDIT_DELAYIMPORT_SIZE       1142
+#define IDC_EDIT43                      1143
+#define IDC_EDIT_COM_VIRTUALADDRESS     1143
+#define IDC_EDIT44                      1144
+#define IDC_EDIT_COM_SIZE               1144
+#define IDC_EDIT45                      1145
+#define IDC_EDIT_RESERVED_VIRTUALADDRESS 1145
+#define IDC_EDIT46                      1146
+#define IDC_EDIT_RESERVED_SIZE          1146
 #define IDC_STATIC_PROC                 -1
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        103
+#define _APS_NEXT_RESOURCE_VALUE        110
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1017
+#define _APS_NEXT_CONTROL_VALUE         1028
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

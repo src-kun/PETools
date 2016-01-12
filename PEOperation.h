@@ -9,6 +9,8 @@
 #include <string>
 #include "PETool.h"
 #include "Util.h"
+#include "PESectionHeader.h"
+#include "PEOptionHeader.h"
 
 #if _MSC_VER > 1000
 #pragma once
@@ -23,6 +25,7 @@ public:
 public:					
 	void ShowPEView(HINSTANCE hInstance, HWND hwndDlg, TCHAR *path);
 	void ParsingPeInfo(CHAR* filePath);							//显示PE头信息
+	
 
 private:
 	void SetPeInfoDlg(PETool::_IMAGE_ADR_TABLE &imageTable);

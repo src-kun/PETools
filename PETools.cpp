@@ -12,7 +12,7 @@
 //
 //OPENFILENAME
 
-HINSTANCE hAppInstance;
+static HINSTANCE hAppInstance;
 static Util util;
 
 
@@ -204,6 +204,11 @@ BOOL CALLBACK DialogProc(
 				{
 					util.OpenFileWindow(&stOpenFile ,hwndDlg);
 					peOption.ShowPEView(hAppInstance, hwndDlg, stOpenFile.lpstrFile);
+					break;
+				}
+			case IDC_BUTTON_OPEN_DATADIRECTORY_VIEW:
+				{
+
 					break;
 				}
 			}
